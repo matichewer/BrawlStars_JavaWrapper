@@ -24,7 +24,7 @@ public class APIConnection {
 		JSONObject toReturn = null;
 		String link = "https://api.brawlstars.com/v1/players/%" + tag;
 		
-		try {
+		try { 
 			
 			URL url = new URL(link);
 			HttpURLConnection http = (HttpURLConnection)url.openConnection();
