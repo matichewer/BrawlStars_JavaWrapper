@@ -3,7 +3,7 @@ It's a mobile device game. More information on [Wikipedia](https://en.wikipedia.
 Download the game on [PlayStore](https://play.google.com/store/apps/details?id=com.supercell.brawlstars) or [AppleStore](https://apps.apple.com/es/app/brawl-stars/id1229016807).
 
 ### About this repo
-This repository pretends to create a wrapper to use the **API of Brawl Stars using Java**.
+It's a Maven proyect that pretends to create a wrapper to use the **API of Brawl Stars** with Java.
 
 ### Official documentation: 
 https://developer.brawlstars.com/#/documentation
