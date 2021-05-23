@@ -15,7 +15,7 @@ public class APIConnection {
 	
 
 	public APIConnection() {
-		// guardar keyapi en variable
+		// guardar keyapi en variable 
 	}
 	
 	
