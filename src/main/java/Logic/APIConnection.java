@@ -1,6 +1,8 @@
 package Logic;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -11,11 +13,22 @@ import org.json.JSONObject;
 
 public class APIConnection {
 	
-	private String keyAPI;
+	private String token;
 	
 
 	public APIConnection() {
-		// guardar keyapi en variable 
+
+		// Obtengo el token privado para hacer uso de la API del Brawl Stars
+		try {
+			
+			File archivo_token = new File ("token.api");
+			FileReader fr = new FileReader (archivo_token);
+			BufferedReader br = new BufferedReader(fr);
+			token = br.readLine();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -29,7 +42,7 @@ public class APIConnection {
 			URL url = new URL(link);
 			HttpURLConnection http = (HttpURLConnection)url.openConnection();
 	        http.setRequestMethod("GET");
-			http.setRequestProperty("Authorization","Bearer "+ keyAPI);
+			http.setRequestProperty("Authorization","Bearer "+ token);
 	        http.setRequestProperty("Content-Type","application/json");	        
 	        System.out.println("Status de la conexion:  " + http.getResponseCode() + " " + http.getResponseMessage());
 
