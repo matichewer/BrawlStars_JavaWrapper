@@ -6,5 +6,5 @@ Download the game on [PlayStore](https://play.google.com/store/apps/details?id=c
 This repository pretends to create a wrapper to use the **API of Brawl Stars using Java**.
 
 ### Official documentation: 
-https://developer.brawlstars.com/
+https://developer.brawlstars.com/#/documentation
 
