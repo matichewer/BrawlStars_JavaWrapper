@@ -6,5 +6,5 @@ Download the game on [PlayStore](https://play.google.com/store/apps/details?id=c
 It's a Maven proyect that pretends to create a wrapper to use the **API of Brawl Stars** with Java.
 
 ### Official documentation: 
-https://developer.brawlstars.com/#/documentation
+https://developer.brawlstars.com/
 
