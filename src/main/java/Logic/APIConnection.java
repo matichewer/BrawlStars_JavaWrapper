@@ -14,28 +14,39 @@ import org.json.JSONObject;
 public class APIConnection {
 	
 	private String token;
+	private int statusID;
+	private String statusReason;
 	
 
 	public APIConnection() {
-
-		// Obtengo el token privado para hacer uso de la API del Brawl Stars
-		try {
-			
-			File archivo_token = new File ("token.api");
-			FileReader fr = new FileReader (archivo_token);
-			BufferedReader br = new BufferedReader(fr);
-			token = br.readLine();
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		token = null;
+		statusID = 0;
+		statusReason = null;
+		
+		leerTokenBrawlStars();
+		
 	}
 	
 	
-	public JSONObject getJsonPlayer(String tag) {
-		
-		JSONObject toReturn = null;
-		String link = "https://api.brawlstars.com/v1/players/%" + tag;
+	private void leerTokenBrawlStars() {		
+		// Obtengo el token privado para hacer uso de la API del Brawl Stars
+		try {			
+			File archivoToken = new File ("token.api");
+			FileReader fr = new FileReader (archivoToken);
+			BufferedReader br = new BufferedReader(fr);
+			token = br.readLine();
+			br.close();
+			fr.close();			
+		} catch (IOException e) {
+			statusID = 1;
+			statusReason = "Can't obtein private token.";
+			e.printStackTrace();
+		}		
+	}
+	
+	private JSONObject generateJSON(String link) {
+
+		JSONObject json = null;
 		
 		try { 
 			
@@ -43,28 +54,96 @@ public class APIConnection {
 			HttpURLConnection http = (HttpURLConnection)url.openConnection();
 	        http.setRequestMethod("GET");
 			http.setRequestProperty("Authorization","Bearer "+ token);
-	        http.setRequestProperty("Content-Type","application/json");	        
-	        System.out.println("Status de la conexion:  " + http.getResponseCode() + " " + http.getResponseMessage());
-
+	        http.setRequestProperty("Content-Type","application/json");	
 	        
-	        // Si la conexion es correcta preparo el JSON, sino retorno null
+	        statusID = http.getResponseCode();
+	        statusReason = http.getResponseMessage();
+	        
+			System.out.println("Link: " + link);
+	        System.out.println("Status de la conexion:  " + statusID + " " + statusReason + "\n");
+
+	        // Si la conexion es correcta preparo el JSON, sino mantengo null
 	        if(http.getResponseCode() == 200) {
 	        	
 	  			BufferedReader br  = new BufferedReader(new InputStreamReader(http.getInputStream(), Charset.forName("UTF-8")));
-	  			StringBuilder sb = new StringBuilder();
-	  			String line;
-	  			while ((line = br.readLine()) != null) 
-	  				sb.append(line);	  
-	  			http.disconnect();    	  
-	  			toReturn = new JSONObject(sb.toString());
+	  			json = new JSONObject(br.readLine());
 	  			
-	        }
+	  			http.disconnect();   
+	  			br.close();	 	  			
+	        }	
 	        
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-			
-		return toReturn;
 		
+		return json;
 	}
+	
+	
+	
+	// PLAYERS
+	public JSONObject getJsonPlayer(String tag) {		
+		String link = "https://api.brawlstars.com/v1/players/%" + tag;		
+		return generateJSON(link);
+	}
+	
+	public JSONObject getJsonPlayerBattlelog(String tag) {		
+		String link = "https://api.brawlstars.com/v1/players/%" + tag + "/battlelog";		
+		return generateJSON(link);
+	}
+	
+	
+	
+	// CLUBS
+	public JSONObject getJsonClub(String tag) {		
+		String link = "https://api.brawlstars.com/v1/clubs/%" + tag;
+		return generateJSON(link);
+	}
+	
+	public JSONObject getJsonClubMembers(String tag) {		
+		String link = "https://api.brawlstars.com/v1/clubs/%" + tag + "/members";
+		return generateJSON(link);
+	}
+	
+	
+	
+	// BRAWLERS
+	public JSONObject getJsonBrawlers() {		
+		String link = "https://api.brawlstars.com/v1/brawlers";
+		return generateJSON(link);
+	}
+	
+	public JSONObject getJsonBrawlerID(String idBrawler) {		
+		String link = "https://api.brawlstars.com/v1/brawlers/" + idBrawler;
+		return generateJSON(link);
+	}
+
+	
+	
+	// RANKINGS
+	public JSONObject getJsonRankPlayers(String idPais) {		
+		String link = "https://api.brawlstars.com/v1/rankings/ " + idPais + "/players"; 
+		return generateJSON(link);
+	}
+	
+	public JSONObject getJsonRankBrawler(String idPais, String idBrawler) {		
+		String link = "https://api.brawlstars.com/v1/rankings/" + idPais + "/brawlers/" + idBrawler; 
+		return generateJSON(link);
+	}
+	
+	public JSONObject getJsonRankClub(String tag) {		
+		String link = "https://api.brawlstars.com/v1/rankings/" + tag + "/clubs"; 
+		return generateJSON(link);
+	}
+	
+	public JSONObject getJsonRankPowerPlaySeasons(String idPais) {		
+		String link = "https://api.brawlstars.com/v1/rankings/" + idPais + "/powerplay/seasons"; 
+		return generateJSON(link);
+	}
+	
+	public JSONObject getJsonRankPowerPlaySpecificSeason(String idPais, String idSeason) {		
+		String link = "https://api.brawlstars.com/v1/rankings/" + idPais + "/powerplay/seasons/" + idSeason; 
+		return generateJSON(link);
+	}
+	
 }
