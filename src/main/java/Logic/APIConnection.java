@@ -83,12 +83,12 @@ public class APIConnection {
 	
 	// PLAYERS
 	public JSONObject getJsonPlayer(String tag) {		
-		String link = "https://api.brawlstars.com/v1/players/%" + tag;		
+		String link = "https://api.brawlstars.com/v1/players/%23" + tag;		
 		return generateJSON(link);
 	}
 	
 	public JSONObject getJsonPlayerBattlelog(String tag) {		
-		String link = "https://api.brawlstars.com/v1/players/%" + tag + "/battlelog";		
+		String link = "https://api.brawlstars.com/v1/players/%23" + tag + "/battlelog";		
 		return generateJSON(link);
 	}
 	

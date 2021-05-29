@@ -1,21 +1,46 @@
 package Main;
 
 import org.json.JSONObject;
-
+import GeneratedObjects.Jugador;
 import Logic.APIConnection;
+import Logic.Parser;
+
 
 public class Main {
 
 	public static void main(String[] args) {
 		
 		
-		// Tests
-		APIConnection api = new APIConnection();
 		
-		JSONObject jsonPlayer = api.getJsonPlayer("23U2VYCYV");
-		System.out.println(jsonPlayer.toString(4));
+
+		
+//		-------------------- INICIO TEST CLASE Parser --------------------
+		
+		Parser parser = new Parser();
+		Jugador jugador = parser.generarJugador("U2VYCYV");
+		System.out.println(jugador.getTag() + "  " + jugador.getNombre());
+		
+		
+
+//		-------------------- FIN TEST CLASE Parser --------------------
+		
+		
+		
+		
+		
+		
+		
+		
+		
+//		-------------------- INICIO TEST CLASE APIConnection --------------------
+		
+		
+//		APIConnection api = new APIConnection();
+//		
+//		JSONObject jsonPlayer = api.getJsonPlayer("U2VYCYV");
+//		System.out.println(jsonPlayer.toString(4));
 				
-//		JSONObject jsonPlayerBattlelog = api.getJsonPlayerBattlelog("23U2VYCYV");
+//		JSONObject jsonPlayerBattlelog = api.getJsonPlayerBattlelog("U2VYCYV");
 //		System.out.println(jsonPlayerBattlelog.toString(5));
 
 //		JSONObject jsonClub = api.getJsonClub("2329PVGPCLQ");
@@ -44,8 +69,9 @@ public class Main {
 		
 //		JSONObject jsonRankPowerPlaySpecificSeason = api.getJsonRankPowerPlaySpecificSeason("AR", "56");
 //		System.out.println(jsonRankPowerPlaySpecificSeason.toString(5));
-		
-		
+
+	
+//		----------------------- FIN TEST CLASE APIConnection -----------------------
 		
 		
 		
