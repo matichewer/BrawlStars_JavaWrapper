@@ -18,7 +18,7 @@ public class Main {
 		
 		Parser parser = new Parser();
 		Jugador jugador = parser.generarJugador("U2VYCYV");
-		System.out.println(jugador.getTag() + "  " + jugador.getNombre());
+		System.out.println(jugador.toString());
 		
 		
 

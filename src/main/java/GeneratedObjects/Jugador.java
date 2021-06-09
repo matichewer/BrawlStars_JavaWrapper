@@ -3,6 +3,7 @@ package GeneratedObjects;
 public class Jugador {
 
 	
+	
 	private String tag;
 	private String nombre;
 	private int trofeos;
@@ -36,6 +37,15 @@ public class Jugador {
 	}
 	
 	
+	@Override
+	public String toString() {
+		return "Jugador:\n\ntag: " + tag + "\nnombre: " + nombre + "\ntrofeos: " + trofeos + "\ntrofeosMax: "
+				+ trofeosMax + "\nnivel: " + nivel + "\nexp: " + exp + "\nwonChampionshipChallenge: "
+				+ wonChampionshipChallenge + "\nvictorias3vs3: " + victorias3vs3 + "\nvictoriasSolo: " + victoriasSolo
+				+ "\nvictoriasDuo: " + victoriasDuo + "\nmaxLvlIrrupcionUrbana: " + maxLvlIrrupcionUrbana
+				+ "\nmejorTiempoMegaBrawler: " + mejorTiempoMegaBrawler + "\nclub: " + club;
+	}
+
 	public String getTag() {
 		return tag;
 	}
@@ -114,4 +124,5 @@ public class Jugador {
 	public void setClub(Club club) {
 		this.club = club;
 	}		
+	
 }
