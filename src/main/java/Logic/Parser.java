@@ -32,10 +32,12 @@ public class Parser {
 		jugador.setMaxLvlIrrupcionUrbana(json.getInt("bestRoboRumbleTime"));
 		jugador.setMejorTiempoMegaBrawler(json.getInt("bestTimeAsBigBrawler"));
 		
-		Club club = new Club();
-		club.setTag(json.getJSONObject("club").getString("tag"));
-		club.setNombre(json.getJSONObject("club").getString("name"));
-		jugador.setClub(club);
+		if(json.getJSONObject("club").has("tag")) {
+			Club club = new Club();
+			club.setTag((json.getJSONObject("club")).getString("tag"));
+			club.setNombre(json.getJSONObject("club").getString("name"));
+			jugador.setClub(club);
+		}
 		
 		return jugador;
 	}
