@@ -3,7 +3,7 @@ package Main;
 import org.json.JSONObject;
 import GeneratedObjects.Jugador;
 import Logic.APIConnection;
-import Logic.Parser;
+import Logic.ObjectGenerator;
 
 
 public class Main {
@@ -16,8 +16,8 @@ public class Main {
 		
 //		-------------------- INICIO TEST CLASE Parser --------------------
 		
-		Parser parser = new Parser();
-		Jugador jugador = parser.generarJugador("U2VYCYV");
+		ObjectGenerator objGen = new ObjectGenerator();
+		Jugador jugador = objGen.generarJugador("U2VYCYV");
 		System.out.println(jugador.toString());
 		
 		

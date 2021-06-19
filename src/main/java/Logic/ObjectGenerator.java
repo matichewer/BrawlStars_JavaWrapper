@@ -5,12 +5,12 @@ import org.json.JSONObject;
 import GeneratedObjects.Club;
 import GeneratedObjects.Jugador;
 
-public class Parser {
+public class ObjectGenerator {
 
 	private APIConnection api;
 	
 	
-	public Parser() {
+	public ObjectGenerator() {
 		api = new APIConnection();
 	}
 	
