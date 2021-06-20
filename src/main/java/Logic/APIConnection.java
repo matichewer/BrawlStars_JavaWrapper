@@ -79,16 +79,17 @@ public class APIConnection {
 		
 		return json;
 	}
-	
-	
+		
 	
 	// PLAYERS
-	public JSONObject getJsonPlayer(String tag) {		
+	public JSONObject getJsonPlayer(String tag) {
+		tag = tag.replace("#", "");
 		String link = "https://api.brawlstars.com/v1/players/%23" + tag;		
 		return generateJSON(link);
 	}
 	
-	public JSONObject getJsonPlayerBattlelog(String tag) {		
+	public JSONObject getJsonPlayerBattlelog(String tag) {	
+		tag = tag.replace("#", "");	
 		String link = "https://api.brawlstars.com/v1/players/%23" + tag + "/battlelog";		
 		return generateJSON(link);
 	}
@@ -96,25 +97,28 @@ public class APIConnection {
 	
 	
 	// CLUBS
-	public JSONObject getJsonClub(String tag) {		
-		String link = "https://api.brawlstars.com/v1/clubs/%" + tag;
+	public JSONObject getJsonClub(String tag) {	
+		tag = tag.replace("#", "");	
+		String link = "https://api.brawlstars.com/v1/clubs/%23" + tag;
 		return generateJSON(link);
 	}
 	
-	public JSONObject getJsonClubMembers(String tag) {		
-		String link = "https://api.brawlstars.com/v1/clubs/%" + tag + "/members";
+	public JSONObject getJsonClubMembers(String tag) {	
+		tag = tag.replace("#", "");	
+		String link = "https://api.brawlstars.com/v1/clubs/%23" + tag + "/members";
 		return generateJSON(link);
 	}
 	
 	
 	
 	// BRAWLERS
-	public JSONObject getJsonBrawlers() {		
+	public JSONObject getJsonBrawlers() {	
 		String link = "https://api.brawlstars.com/v1/brawlers";
 		return generateJSON(link);
 	}
 	
-	public JSONObject getJsonBrawlerID(String idBrawler) {		
+	public JSONObject getJsonBrawlerID(String idBrawler) {	
+		idBrawler = idBrawler.replace("#", "");	
 		String link = "https://api.brawlstars.com/v1/brawlers/" + idBrawler;
 		return generateJSON(link);
 	}
@@ -122,27 +126,34 @@ public class APIConnection {
 	
 	
 	// RANKINGS
-	public JSONObject getJsonRankPlayers(String idPais) {		
+	public JSONObject getJsonRankPlayers(String idPais) {	
+		idPais = idPais.replace("#", "");	
 		String link = "https://api.brawlstars.com/v1/rankings/ " + idPais + "/players"; 
 		return generateJSON(link);
 	}
 	
-	public JSONObject getJsonRankBrawler(String idPais, String idBrawler) {		
+	public JSONObject getJsonRankBrawler(String idPais, String idBrawler) {	
+		idPais = idPais.replace("#", "");	
+		idBrawler = idBrawler.replace("#", "");	
 		String link = "https://api.brawlstars.com/v1/rankings/" + idPais + "/brawlers/" + idBrawler; 
 		return generateJSON(link);
 	}
 	
-	public JSONObject getJsonRankClub(String tag) {		
+	public JSONObject getJsonRankClub(String tag) {	
+		tag = tag.replace("#", "");	
 		String link = "https://api.brawlstars.com/v1/rankings/" + tag + "/clubs"; 
 		return generateJSON(link);
 	}
 	
-	public JSONObject getJsonRankPowerPlaySeasons(String idPais) {		
+	public JSONObject getJsonRankPowerPlaySeasons(String idPais) {
+		idPais = idPais.replace("#", "");		
 		String link = "https://api.brawlstars.com/v1/rankings/" + idPais + "/powerplay/seasons"; 
 		return generateJSON(link);
 	}
 	
-	public JSONObject getJsonRankPowerPlaySpecificSeason(String idPais, String idSeason) {		
+	public JSONObject getJsonRankPowerPlaySpecificSeason(String idPais, String idSeason) {	
+		idPais = idPais.replace("#", "");	
+		idSeason = idSeason.replace("#", "");	
 		String link = "https://api.brawlstars.com/v1/rankings/" + idPais + "/powerplay/seasons/" + idSeason; 
 		return generateJSON(link);
 	}

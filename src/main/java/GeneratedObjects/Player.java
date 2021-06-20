@@ -1,8 +1,10 @@
 package GeneratedObjects;
 
-public class Jugador {
+import org.json.JSONObject;
 
-	
+import Logic.APIConnection;
+
+public class Player {
 	
 	private String tag;
 	private String nombre;
@@ -20,20 +22,33 @@ public class Jugador {
 	private Club club;
 	
 	
-	public Jugador() {
-		tag = "";
-		nombre = "";
-		trofeos = 0;
-		trofeosMax = 0;
-		nivel = 0;
-		exp = 0;
-		wonChampionshipChallenge = false;
-		victorias3vs3 = 0;
-		victoriasDuo = 0;
-		victoriasSolo = 0;
-		maxLvlIrrupcionUrbana = 0;
-		mejorTiempoMegaBrawler = 0;
-		club = null;
+	public Player(String tag) {
+		
+		// Instancio API para poder hacer consultas sobre el jugador
+		APIConnection api = new APIConnection();
+		
+		// Realizo la consulta y la guardo en objeto json
+		JSONObject json = api.getJsonPlayer(tag);
+		
+		// Asigno todos los atributos
+		this.tag = tag;
+		nombre = json.getString("name");
+		trofeos = json.getInt("trophies");
+		trofeosMax = json.getInt("highestTrophies");
+		nivel = json.getInt("expLevel");
+		exp = json.getInt("expPoints");
+		wonChampionshipChallenge = json.getBoolean("isQualifiedFromChampionshipChallenge");
+		victorias3vs3 = json.getInt("3vs3Victories");
+		victoriasSolo = json.getInt("soloVictories");
+		victoriasDuo = json.getInt("duoVictories");		
+		maxLvlIrrupcionUrbana = json.getInt("bestRoboRumbleTime");
+		mejorTiempoMegaBrawler = json.getInt("bestTimeAsBigBrawler");
+		
+		// Si tiene club, lo asigno
+		if(json.getJSONObject("club").has("tag")) {
+			club = new Club(json.getJSONObject("club").getString("tag"));
+		}
+		
 	}
 	
 	

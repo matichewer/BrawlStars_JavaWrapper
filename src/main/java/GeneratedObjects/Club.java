@@ -1,14 +1,27 @@
 package GeneratedObjects;
 
+import org.json.JSONObject;
+
+import Logic.APIConnection;
+
 public class Club {
 
 
 	private String tag;
 	private String nombre;
 	
-	public Club() {
-		tag = "";
-		nombre = "";
+	public Club(String tag) {
+		
+		// Instancio API para poder hacer consultas sobre el club
+		APIConnection api = new APIConnection();
+		
+		// Realizo la consulta y la guardo en objeto json
+		JSONObject json = api.getJsonClub(tag);
+		
+		// Asigno todos los atributos
+		this.tag = tag;
+		nombre = json.getString("name");
+		
 	}
 	
 	
