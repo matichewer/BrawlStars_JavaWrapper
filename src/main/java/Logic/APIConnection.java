@@ -31,7 +31,8 @@ public class APIConnection {
 	private void leerTokenBrawlStars() {		
 		// Obtengo el token privado para hacer uso de la API del Brawl Stars
 		try {			
-			File archivoToken = new File ("token.api");
+
+			File archivoToken = new File ("./tokenBrawl.txt");
 			FileReader fr = new FileReader (archivoToken);
 			BufferedReader br = new BufferedReader(fr);
 			token = br.readLine();
