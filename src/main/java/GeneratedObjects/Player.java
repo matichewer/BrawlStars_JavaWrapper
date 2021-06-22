@@ -6,6 +6,9 @@ import Logic.APIConnection;
 
 public class Player {
 	
+	
+	private boolean status;
+	
 	private String tag;
 	private String nombre;
 	private int trofeos;
@@ -24,31 +27,36 @@ public class Player {
 	
 	public Player(String tag) {
 		
+		// El status es falso hasta que se compruebe que existe el jugador
+		status = false;
+		
 		// Instancio API para poder hacer consultas sobre el jugador
 		APIConnection api = new APIConnection();
 		
 		// Realizo la consulta y la guardo en objeto json
 		JSONObject json = api.getJsonPlayer(tag);
 		
-		// Asigno todos los atributos
-		this.tag = tag;
-		nombre = json.getString("name");
-		trofeos = json.getInt("trophies");
-		trofeosMax = json.getInt("highestTrophies");
-		nivel = json.getInt("expLevel");
-		exp = json.getInt("expPoints");
-		wonChampionshipChallenge = json.getBoolean("isQualifiedFromChampionshipChallenge");
-		victorias3vs3 = json.getInt("3vs3Victories");
-		victoriasSolo = json.getInt("soloVictories");
-		victoriasDuo = json.getInt("duoVictories");		
-		maxLvlIrrupcionUrbana = json.getInt("bestRoboRumbleTime");
-		mejorTiempoMegaBrawler = json.getInt("bestTimeAsBigBrawler");
-		
-		// Si tiene club, lo asigno
-		if(json.getJSONObject("club").has("tag")) {
-			club = new Club(json.getJSONObject("club").getString("tag"));
+		if(json!=null) {
+			status = true;
+			// Asigno todos los atributos
+			this.tag = tag;
+			nombre = json.getString("name");
+			trofeos = json.getInt("trophies");
+			trofeosMax = json.getInt("highestTrophies");
+			nivel = json.getInt("expLevel");
+			exp = json.getInt("expPoints");
+			wonChampionshipChallenge = json.getBoolean("isQualifiedFromChampionshipChallenge");
+			victorias3vs3 = json.getInt("3vs3Victories");
+			victoriasSolo = json.getInt("soloVictories");
+			victoriasDuo = json.getInt("duoVictories");		
+			maxLvlIrrupcionUrbana = json.getInt("bestRoboRumbleTime");
+			mejorTiempoMegaBrawler = json.getInt("bestTimeAsBigBrawler");
+			
+			// Si tiene club, lo asigno
+			if(json.getJSONObject("club").has("tag")) {
+				club = new Club(json.getJSONObject("club").getString("tag"));
+			}
 		}
-		
 	}
 	
 	
@@ -139,5 +147,7 @@ public class Player {
 	public void setClub(Club club) {
 		this.club = club;
 	}		
-	
+	public boolean getStatus() {
+		return status;
+	}	
 }

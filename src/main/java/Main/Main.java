@@ -16,17 +16,22 @@ public class Main {
 //		-------------------- INICIO TEST CLASE Parser --------------------
 		
 		Player player1 = new Player("U2VYCYV");
-		System.out.println(player1.toString());		
-		System.out.println("____________________________________");
-
+		if(player1.getStatus()) {
+			System.out.println(player1.toString());		
+			System.out.println("____________________________________");
+		}
+		
 		Player player2 = new Player("9YGY2GPY0");
-		System.out.println(player2.toString());
-		System.out.println("____________________________________");
+		if(player2.getStatus()) {
+			System.out.println(player2.toString());
+			System.out.println("____________________________________");
+		}
 		
 		Player player3 = new Player("8U002G0PL");
-		System.out.println(player3.toString());		
-		System.out.println("____________________________________");
-		
+		if(player3.getStatus()) {
+			System.out.println(player3.toString());		
+			System.out.println("____________________________________");
+		}
 	
 		
 
