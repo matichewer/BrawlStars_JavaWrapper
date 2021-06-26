@@ -27,6 +27,9 @@ public class Player {
 	
 	public Player(String tag) {
 		
+
+    	tag = tag.replace("#", "");
+		
 		// El status es falso hasta que se compruebe que existe el jugador
 		status = false;
 		
@@ -54,7 +57,9 @@ public class Player {
 			
 			// Si tiene club, lo asigno
 			if(json.getJSONObject("club").has("tag")) {
-				club = new Club(json.getJSONObject("club").getString("tag"));
+				String tagClub = json.getJSONObject("club").getString("tag");
+            	tagClub = tagClub.replace("#", "");
+				club = new Club(tagClub);
 			}
 		}
 	}

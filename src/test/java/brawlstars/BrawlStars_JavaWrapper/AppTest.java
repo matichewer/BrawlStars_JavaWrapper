@@ -6,22 +6,21 @@ import org.junit.Test;
 
 import GeneratedObjects.Player;
 
-/**
- * Unit test for simple App.
- */
+
 public class AppTest 
 {
-    /**
-     * Rigorous Test :-)
-     */
+	
     @Test
-    public void shouldAnswerWithTrue()
-    {
-//        assertTrue( true );
-    	
+    public void shouldAnswerWithTrue() {
+
     	System.out.println("Inicio de JUnit Test\n");
+    	
+        assertTrue( true );
+    	
         Player p1 = new Player("U2VYCYV");
         assertTrue(p1.getStatus());
+        
     	System.out.println("Fin de JUnit Test");
+    	
     }
 }
