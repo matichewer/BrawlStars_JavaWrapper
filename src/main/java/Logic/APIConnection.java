@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.Charset;
 
@@ -31,8 +32,7 @@ public class APIConnection {
 	private void leerTokenBrawlStars() {		
 		// Obtengo el token privado para hacer uso de la API del Brawl Stars
 		try {			
-
-			File archivoToken = new File ("./tokenBrawl.txt");
+			File archivoToken = new File ("./config/Token_API_BrawlStars.txt");
 			FileReader fr = new FileReader (archivoToken);
 			BufferedReader br = new BufferedReader(fr);
 			token = br.readLine();
