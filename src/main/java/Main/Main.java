@@ -1,6 +1,8 @@
 package Main;
 
 import org.json.JSONObject;
+
+import GeneratedObjects.GameData;
 import GeneratedObjects.Player;
 import Logic.APIConnection;
 
@@ -33,6 +35,10 @@ public class Main {
 			System.out.println("____________________________________");
 		}
 	
+		GameData data = new GameData();
+		System.out.println("Cant brawlers: " + data.getCantBrawlers());
+		System.out.println("Cant gadgets: " + data.getCantGadgets());
+		System.out.println("Cant estelares: " + data.getCantStarPowers());
 		
 
 //		-------------------- FIN TEST CLASE Parser --------------------
