@@ -1,5 +1,6 @@
 package GeneratedObjects;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import Logic.APIConnection;
@@ -24,11 +25,18 @@ public class Player {
 	private int mejorTiempoMegaBrawler;
 	private Club club;
 	
+	private int cantBrawlers;
+	private int cantGadgets;
+	private int cantStarPowers;
+	
 	
 	public Player(String tag) {
 		
 
     	tag = tag.replace("#", "");
+		cantBrawlers = 0;
+		cantGadgets = 0;
+		cantStarPowers = 0;
 		
 		// El status es falso hasta que se compruebe que existe el jugador
 		status = false;
@@ -61,6 +69,17 @@ public class Player {
             	tagClub = tagClub.replace("#", "");
 				club = new Club(tagClub);
 			}
+			
+			
+			// Calculo starpowers y gadgets
+			JSONArray brawlers = json.getJSONArray("brawlers");
+			cantBrawlers = brawlers.length();
+			for(int i=0; i<cantBrawlers; i++) {			
+				JSONObject aBrawler = brawlers.getJSONObject(i);
+				cantGadgets = cantGadgets + aBrawler.getJSONArray("gadgets").length();
+				cantStarPowers = cantStarPowers + aBrawler.getJSONArray("starPowers").length();						
+			}
+			
 		}
 	}
 	
@@ -71,7 +90,8 @@ public class Player {
 				+ trofeosMax + "\nnivel: " + nivel + "\nexp: " + exp + "\nwonChampionshipChallenge: "
 				+ wonChampionshipChallenge + "\nvictorias3vs3: " + victorias3vs3 + "\nvictoriasSolo: " + victoriasSolo
 				+ "\nvictoriasDuo: " + victoriasDuo + "\nmaxLvlIrrupcionUrbana: " + maxLvlIrrupcionUrbana
-				+ "\nmejorTiempoMegaBrawler: " + mejorTiempoMegaBrawler + "\nclub: " + club;
+				+ "\nmejorTiempoMegaBrawler: " + mejorTiempoMegaBrawler + "\nclub: " + club
+				+ "\ncantBrawlers: " + cantBrawlers + "\ncantGadgets: " + cantGadgets + "\ncantEstelares: " + cantStarPowers;
 	}
 
 	public String getTag() {
@@ -154,5 +174,23 @@ public class Player {
 	}		
 	public boolean getStatus() {
 		return status;
-	}	
+	}
+	public int getCantBrawlers() {
+		return cantBrawlers;
+	}
+	public void setCantBrawlers(int cantBrawlers) {
+		this.cantBrawlers = cantBrawlers;
+	}
+	public int getCantGadgets() {
+		return cantGadgets;
+	}
+	public void setCantGadgets(int cantGadgets) {
+		this.cantGadgets = cantGadgets;
+	}
+	public int getCantStarPowers() {
+		return cantStarPowers;
+	}
+	public void setCantStarPowers(int cantStarPowers) {
+		this.cantStarPowers = cantStarPowers;
+	}		
 }

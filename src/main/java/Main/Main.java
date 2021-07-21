@@ -17,12 +17,13 @@ public class Main {
 		
 //		-------------------- INICIO TEST CLASE Parser --------------------
 		
+		
 		Player player1 = new Player("U2VYCYV");
 		if(player1.getStatus()) {
 			System.out.println(player1.toString());		
 			System.out.println("____________________________________");
 		}
-		
+		/*
 		Player player2 = new Player("9YGY2GPY0");
 		if(player2.getStatus()) {
 			System.out.println(player2.toString());
@@ -34,7 +35,8 @@ public class Main {
 			System.out.println(player3.toString());		
 			System.out.println("____________________________________");
 		}
-	
+	*/
+		
 		GameData data = new GameData();
 		System.out.println("Cant brawlers: " + data.getCantBrawlers());
 		System.out.println("Cant gadgets: " + data.getCantGadgets());
